@@ -1,0 +1,3 @@
+logging.level.root: WARN
+spring.main.banner-mode: "off"
+flying-monster.act-probability: 0.000001

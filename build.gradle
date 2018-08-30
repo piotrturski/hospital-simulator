@@ -1,0 +1,35 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.3.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'hospital-simulator'
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter"
+    compile 'org.eclipse.collections:eclipse-collections:9.2.0'
+    compile 'one.util:streamex:0.6.7'
+    compile 'org.apache.commons:commons-lang3:3.8'
+    compile 'com.google.guava:guava:26.0-jre'
+
+    compileOnly 'org.projectlombok:lombok:1.18.2'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}

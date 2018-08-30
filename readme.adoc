@@ -1,0 +1,35 @@
+# Hospital simulator
+
+## Summary
+java 8, lombok, spring boot, gradle
+
+Source available at https://github.com/piotrturski/hospital-simulator
+
+## Build and run
+
+  ./gradlew build
+  java -jar build/libs/*.jar F P
+
+## Thoughts
+
+### what's unspecified and / or  inconsistent:
+
+ - once in a million (of what?) patients (all? dead?) or simulations?
+ - change state != only one rule can be applied. diabetes
+ - monster rule is applied even after another rule
+
+### a few ways of handling deadly rule first:
+    - manual ordering
+    - apply all rules. easiest to extend, computationally most expensive
+    - runtime fail fast (as a result expect not state but wrapper that throws exception when gets DEAD state)
+    - static: remove dead from state enum. none programmer will ever make a mistake but requires a bit more complex architecture
+
+### possible DSL
+        Healthy.with(Insulin, Antibiotic).becomes(Fever)
+        when(Healthy).gets(Insulin, Antibiotic).becomes(Fever)
+        when(Diabetes).gets(Insulin).becomes(Diabetes).otherwise(Dead)
+
+### possible improvements
+
+- debugging. each rule could have a label / description so that
+it's easier to trace which rule kicked in
